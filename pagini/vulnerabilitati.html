@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerabilitati - CyberLab</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style/style_vulnerabilitati.css">
+    <link rel="icon" type="image/x-icon" href="../icons/logo_normal.png">
+</head>
+<body>
+    <header>
+        <h1 style="display: flex; align-items: center; gap: 8px; justify-content: center;">
+            Top 26 Vulnerabilitati
+            <img src="../icons/logo_normal.png" alt="CyberLab Logo" style="height: 60px;">
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Acasă</a></li>
+                <li><a href="../pagini/despre.html">Despre</a></li>
+                <li><a href="../pagini/writeups.html">Writeups</a></li>
+                <li><a href="../pagini/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <section id="cuprins" class="toc">
+            <h2>Cuprins</h2>
+            <ol>
+                <li><a class="anchor" href="#v01">Injecții SQL</a></li>
+                <li><a class="anchor" href="#v02">Cross‑Site Scripting (XSS)</a></li>
+                <li><a class="anchor" href="#v03">Cross‑Site Request Forgery (CSRF)</a></li>
+                <li><a class="anchor" href="#v04">Configurații Greșite</a></li>
+                <li><a class="anchor" href="#v05">Expunere Date Sensibile</a></li>
+                <li><a class="anchor" href="#v06">Autentificare/Session Hijacking</a></li>
+                <li><a class="anchor" href="#v07">Broken Access Control</a></li>
+                <li><a class="anchor" href="#v08">Injection – Command/LDAP</a></li>
+                <li><a class="anchor" href="#v09">SSRF</a></li>
+                <li><a class="anchor" href="#v10">Deserializare Nesigură</a></li>
+                <li><a class="anchor" href="#v11">Vulnerabilități în Dependențe</a></li>
+                <li><a class="anchor" href="#v12">Weak Cryptography</a></li>
+                <li><a class="anchor" href="#v13">Phishing &amp; Social Engineering</a></li>
+                <li><a class="anchor" href="#v14">Ransomware</a></li>
+                <li><a class="anchor" href="#v15">Ataque asupra Emailului (BEC)</a></li>
+                <li><a class="anchor" href="#v16">Expuneri în Cloud</a></li>
+                <li><a class="anchor" href="#v17">Insecure APIs</a></li>
+                <li><a class="anchor" href="#v18">DoS / DDoS</a></li>
+                <li><a class="anchor" href="#v19">IoT Insecurizat</a></li>
+                <li><a class="anchor" href="#v20">Mobile: Insecure Data Storage</a></li>
+                <li><a class="anchor" href="#v21">Supply‑Chain Attacks</a></li>
+                <li><a class="anchor" href="#v22">Insider Threats</a></li>
+                <li><a class="anchor" href="#v23">OT/SCADA Expus</a></li>
+                <li><a class="anchor" href="#v24">Weak Logging &amp; Monitoring</a></li>
+                <li><a class="anchor" href="#v25">Ingenierie de Parole (Password)</a></li>
+                <li><a class="anchor" href="#v26">AI Prompt Injection</a></li>
+            </ol>
+        </section>
+
+        <secion class="grid">
+            <article id="v01" class="card">
+                <h3>Injecții SQL</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Aplicații</span></p>
+                <p>Injecția SQL apare când inputul utilizatorului ajunge direct în interogări fără validare sau parametrizare. Atacatorul poate citi, modifica sau șterge date, ocoli autentificarea ori escalada privilegii. Prevenirea se face prin interogări parametrizate (prepared statements), ORM corect, whitelist la validări și principii de minim privilegiu în baza de date, plus monitorizare și jurnalizare riguroasă.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v02" class="card">
+                <h3>Cross‑Site Scripting (XSS)</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Browser</span></p>
+                <p>XSS permite injectarea de scripturi malițioase în paginile vizualizate de alți utilizatori. Consecințele includ furt de cookie‑uri, sesiuni, redirecționări, keylogging și phishing in‑page. Mitigare: auto‑escape în șabloane, Content Security Policy, validare/filtrare output context‑aware, HTTPOnly la cookie‑uri și interzicerea HTML periculos în câmpurile de intrare, inclusiv sanitizare la upload.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v03" class="card">
+                <h3>Cross‑Site Request Forgery (CSRF)</h3>
+                <p class="meta"><span class="badge">Web</span></p>
+                <p>CSRF forțează un browser autentificat să trimită cereri nedorite către o aplicație, părând legitime. De obicei, scapă de protecții dacă sesiunile se bazează doar pe cookie‑uri. Protecții recomandate: token‑uri anti‑CSRF, SameSite=Lax/Strict pentru cookie‑uri, verificare de origine/referer, butoane de confirmare pentru acțiuni critice și folosirea metodelor corecte (POST/DELETE) cu idempotency clară.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v04" class="card">
+                <h3>Configurații Greșite</h3>
+                <p class="meta"><span class="badge">Infra</span> <span class="badge">Cloud</span></p>
+                <p>Setări implicite, porturi expuse, directoare listabile, debug activ în producție sau permisiuni prea largi sunt cauze frecvente. Automatizați configurarea (IaC), integrați scanări de conformitate, dezactivați bannere de versiune și îndepărtați componente neutilizate. Aplicați patch‑uri regulat și folosiți baseline‑uri hardenizate (CIS, Benchmarks) pentru servere, containere și servicii managed.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v05" class="card">
+                <h3>Expunere de Date Sensibile</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Privacy</span></p>
+                <p>Datele personale, secretele API sau fișierele de backup ajung accesibile public din neatenție. Criptați la repaus și în tranzit, folosiți gestionare de secrete, rotați cheile regulat, separați medii și evitați logarea datelor sensibile. Implementați politici de retenție și drepturi de acces pe bază de rol (RBAC), plus teste de securitate periodice.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v06" class="card">
+                <h3>Autentificare &amp; Session Hijacking</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Identity</span></p>
+                <p>Parole slabe, reutilizate, token‑uri previzibile și sesiuni nelimitate ca durată facilitează compromiterea conturilor. Folosiți MFA, parole unice cu policy clar, rate limiting, parole hash‑uite cu bcrypt/Argon2, rotație token, expirare sesiuni și reautentificare la operațiuni sensibile. Configurați cookie‑uri cu Secure, HttpOnly și SameSite.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v07" class="card">
+                <h3>Broken Access Control</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Aplicații</span></p>
+                <p>Accesul la resurse fără verificare de autorizație permite utilizatorilor să vadă sau să modifice date ale altora. Evitați controlul doar în client, aplicați controale pe server, model RBAC/ABAC, verificări sistematice pe fiecare endpoint și teste de tip IDOR. Logați încercările eșuate și returnați erori generice pentru a nu dezvălui detalii interne.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+            
+            <article id="v08" class="card">
+                <h3>Injection – Command/LDAP</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Sistem</span></p>
+                <p>Construirea de comenzi shell sau interogări LDAP cu input nesecurizat oferă cale directă către execuție arbitrară sau extragere de informații. Evitați concatenările, folosiți API‑uri sigure și whitelist pentru parametri. Reduceți suprafața cu izolări (chroot/containere), permisiuni minime și limitarea resurselor. Jurnalizați și alertați pentru pattern‑uri suspecte.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v09" class="card">
+                <h3>Server‑Side Request Forgery (SSRF)</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Cloud</span></p>
+                <p>SSRF exploatează serverul pentru a face cereri către rețele interne sau servicii meta‑date cloud. Poate duce la exfiltrare de chei, pivotare și execuție. Aplicați whitelist de destinații, interziceți scheme periculoase (file://, gopher://), filtrați IP‑uri private și izolați rolurile/instanțele astfel încât accesul la metadata să fie minim și time‑bounded.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v10" class="card">
+                <h3>Deserializare Nesigură</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">Aplicații</span></p>
+                <p>Formatele de obiecte pot fi manipulate pentru a executa cod la deserializare sau pentru a modifica starea aplicației. Evitați tipurile periculoase, validați schema, folosiți liste de clase permise și semnați/verificați integritatea. Optați pentru formate simple (JSON sigur) și păstrați operațiile de deserializare în zone izolate, cu timeouts și resurse limitate.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v11" class="card">
+                <h3>Vulnerabilități în Dependențe</h3>
+                <p class="meta"><span class="badge">DevSecOps</span></p>
+                <p>Pachete vechi sau neauditate aduc CVE‑uri directe în produs. Implementați SCA (software composition analysis), lock‑files, policy pentru versiuni, Renovate/Dependabot și semnături de proveniență (SBOM). Faceți patching continuu, testare în CI și rollout gradual. Păstrați un registru clar al dependențelor directe și tranzitive pentru transparență și reacție rapidă.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v12" class="card">
+                <h3>Weak Cryptography</h3>
+                <p class="meta"><span class="badge">Criptografie</span></p>
+                <p>Algoritmi depășiți (MD5, SHA‑1), chei scurte sau implementări greșite compromit confidențialitatea. Folosiți standarde moderne (AES‑GCM, ChaCha20‑Poly1305, SHA‑256/512), management de chei prin KMS/HSM, rotație periodică și politici de reînnoire a certificatelor. Evitați dezvoltarea casnică de criptografie; bazați‑vă pe biblioteci auditate și protocoale consacrate.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v13" class="card">
+                <h3>Phishing &amp; Social Engineering</h3>
+                <p class="meta"><span class="badge">Oameni</span> <span class="badge">Email</span></p>
+                <p>Atacatorii manipulează utilizatorii pentru a dezvălui credențiale sau a rula malware. Educați regulat, simulați phishing, aplicați DMARC/DKIM/SPF, activați MFA și folosiți filtre anti‑spam. Procesele interne ar trebui să includă verificări prin canale alternative pentru tranzacții sau solicitări sensibile, reducând suprafața de risc organizațională.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v14" class="card">
+                <h3>Ransomware</h3>
+                <p class="meta"><span class="badge">Malware</span> <span class="badge">Infra</span></p>
+                <p>Ransomware criptează datele și întrerupe operațiunile. Prevenția cere patch‑uire, segmentare de rețea, principle of least privilege și EDR. Back‑up‑urile 3‑2‑1, offline testate periodic, scad impactul. Planuri clare de răspuns la incidente, exerciții tabletop și izolare rapidă a stațiilor afectate limitează extinderea și timpul de recuperare.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v15" class="card">
+                <h3>Ataque asupra Emailului (BEC)</h3>
+                <p class="meta"><span class="badge">Email</span> <span class="badge">Fraudă</span></p>
+                <p>Business Email Compromise implică impersonare pentru a redirecționa plăți sau date. Asigurați controale financiare cu doi pași, validare telefonică, alerte pentru schimbări de cont, reguli DLP și audit pe accesul delegat. Învățați utilizatorii să recunoască anomalii subtile în ton, domeniu și atașamente aparent legitime.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v16" class="card">
+                <h3>Expuneri în Cloud</h3>
+                <p class="meta"><span class="badge">Cloud</span></p>
+                <p>Bucket‑uri publice, roluri IAM prea largi și chei uitate într‑un repo provoacă scurgeri. Implementați politicile de confidențialitate by default, verificări continue (CSPM), separarea conturilor, rotation pentru secrete și acces pe bază de rol cu principii Zero Trust. Activați logare/alertare pentru operațiuni privilegiate și revizuiți periodic.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v17" class="card">
+                <h3>Insecure APIs</h3>
+                <p class="meta"><span class="badge">Web</span> <span class="badge">API</span></p>
+                <p>API‑urile expun adesea date mai mult decât UI‑ul. Lipsa rate‑limiting‑ului, autentificare slabă și filtrare insuficientă permit scraping, enumeration și abuz. Folosiți standarde (OAuth2/OIDC), scopes stricte, pagination corectă, versionare, validare payload, rate‑limit și WAF/WAAP. Documentați minimul necesar public, păstrați cheile în siguranță.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v18" class="card">
+                <h3>DoS / DDoS</h3>
+                <p class="meta"><span class="badge">Rețea</span> <span class="badge">Disponibilitate</span></p>
+                <p>Atacurile de disponibilitate saturează resursele, de la layer 3/4 la aplicație. Protecția constă în autoscalare, CDN, Anycast, rate limiting, cache agresiv și reguli WAF. Testați scenarii de overload, configurați alerte pe latență/erori și prioritizați rutele critice. Contractele cu furnizori de mitigare DDoS reduc timpul de reacție.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v19" class="card">
+                <h3>IoT Insecurizat</h3>
+                <p class="meta"><span class="badge">IoT</span> <span class="badge">Rețea</span></p>
+                <p>Dispozitivele IoT vin cu parole implicite, firmware neactualizat și protocoale nesigure. Segmentați rețeaua, dezactivați servicii inutile, actualizați firmware‑ul și folosiți management centralizat. Monitorizați traficul neobișnuit și impuneți autentificare puternică pentru console. Inventarul clar al dispozitivelor ajută la evaluări periodice și reacții rapide.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v20" class="card">
+                <h3>Mobile: Insecure Data Storage</h3>
+                <p class="meta"><span class="badge">Mobile</span></p>
+                <p>Aplicațiile mobile stochează uneori date sensibile în clar sau în zone nesigure (logs, clipboard). Utilizați Keychain/Keystore, criptare puternică, ofuscare, protecții împotriva root/jailbreak și dezactivați backup‑urile necriptate. Aplicați pinning TLS, validare la runtime și revizuiri periodice ale permisiunilor cerute de aplicație pentru a minimiza expunerea.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v21" class="card">
+                <h3>Supply‑Chain Attacks</h3>
+                <p class="meta"><span class="badge">DevSecOps</span> <span class="badge">Ecosistem</span></p>
+                <p>Compromiterea furnizorilor, a bibliotecilor sau a pipeline‑ului CI/CD permite introducerea de cod malițios. Implementați semnături, verificare SLSA, builduri reproducibile și separarea drepturilor în pipeline. Validați artefactele, scanați imaginile de containere și folosiți registries private cu policy de promovare pe medii.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v22" class="card">
+                <h3>Insider Threats</h3>
+                <p class="meta"><span class="badge">Organizație</span> <span class="badge">Oameni</span></p>
+                <p>Angajați sau contractori pot abuza intenționat sau accidental de acces. Principiul minimului privilegiu, separarea atribuțiilor, monitorizarea activităților sensibile și revizii periodice ale drepturilor sunt esențiale. Programe de conștientizare, canale de raportare și off‑boarding riguros reduc riscul și timpul de detecție.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v23" class="card">
+                <h3>OT/SCADA Expus</h3>
+                <p class="meta"><span class="badge">Industrial</span> <span class="badge">OT/SCADA</span></p>
+                <p>Sistemele industriale au cerințe speciale de disponibilitate și folosesc adesea protocoale vechi. Evitați expunerea directă la internet, implementați segmente separate, firewalluri industriale și monitorizare pasivă. Planuri de patch‑ing bine testate și inventarul componentelor critice sunt cruciale pentru continuitatea operațională.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v24" class="card">
+                <h3>Weak Logging &amp; Monitoring</h3>
+                <p class="meta"><span class="badge">Observability</span></p>
+                <p>Lipsa logurilor utile și a alertelor întârzie detecția incidentelor. Standardizați schema de evenimente, păstrați jurnalele centralizat, activați audit pe acțiuni privilegiate și corelați cu SIEM. Testați periodic playbook‑urile de răspuns, definiți RTO/RPO și metrice de securitate. Logați fără a expune date sensibile, cu retenție adecvată.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v25" class="card">
+                <h3>Ingenierie de Parole (Password)</h3>
+                <p class="meta"><span class="badge">Identity</span> <span class="badge">Oameni</span></p>
+                <p>Parolele slabe sau reciclate rămân poarta principală. Impuneți politici moderne: manager de parole, MFA, parole lungi ușor de reținut (passphrases) și blocare după încercări repetate. Educați despre reutilizarea periculoasă între servicii și folosiți protecții împotriva credential stuffing, inclusiv verificări față de breșe cunoscute.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+            <article id="v26" class="card">
+                <h3>AI Prompt Injection</h3>
+                <p class="meta"><span class="badge">AI</span> <span class="badge">Web</span></p>
+                <p>Prompt injection este o vulnerabilitate emergentă în aplicațiile care folosesc modele de inteligență artificială. Atacatorii manipulează prompturile pentru a forța modelul să ignore instrucțiunile originale și să dezvăluie date sensibile sau să execute acțiuni neautorizate. Prevenirea implică filtrarea și validarea inputurilor, izolarea contextelor de execuție și folosirea tehnicilor de „prompt hardening” pentru a limita comportamentul modelului.</p>
+                <div class="back-top"><a href="#cuprins">↑ sus</a></div>
+            </article>
+
+        </secion>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CyberLab. Toate drepturile rezervate.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent =  new Date().getFullYear();
+    </script>
+</body>
+</html>
